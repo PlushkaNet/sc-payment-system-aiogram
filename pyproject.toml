@@ -15,6 +15,9 @@ dependencies = [
     "dotenv"
 ]
 
+[project.scripts]
+bot = "bot.main:start"
+
 [tool.hatch.version]
 path = "bot/__init__.py"
 
