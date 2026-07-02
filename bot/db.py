@@ -1,10 +1,10 @@
 import hashlib
-from typing import Annotated
+from typing import Annotated, Union
 from typing_extensions import Doc
 import aiosqlite
 
 status = Annotated[bool, Doc("operation status")]
-balance = Annotated[int, Doc("balance")]
+balance = Annotated[Union[int, None], Doc("balance")]
 
 class DB:
     def __init__(self, path: str):
@@ -85,3 +85,7 @@ class DB:
                 await self._db.commit()
                 return True
             return False
+
+    async def get_top_by_money(self) -> list[tuple[str, float]]:
+        async with self._db.execute("SELECT NAME, BALANCE FROM USERS ORDER BY BALANCE DESC") as cursor:
+            return await cursor.fetchall()
