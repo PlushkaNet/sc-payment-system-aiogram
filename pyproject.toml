@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "payment-system-bot"
+dynamic = ["version"]
+description = "Payment system inside telegram bot"
+
+authors = [ { name = "Plushka" } ]
+
+dependencies = [
+    "aiosqlite==0.22.1",
+    "aiogram==3.29.0",
+    "dotenv"
+]
+
+[tool.hatch.version]
+path = "bot/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["bot"]
