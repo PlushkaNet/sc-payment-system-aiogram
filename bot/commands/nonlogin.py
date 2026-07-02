@@ -2,7 +2,7 @@ from aiogram import Router
 from aiogram.types import Message
 from aiogram.filters import Command, CommandStart, StateFilter
 
-import texts
+from .. import texts
 
 router = Router()
 

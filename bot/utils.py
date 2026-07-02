@@ -3,5 +3,5 @@ def check_trade_id_is_correct(trade_id:str):
         return False
     if not trade_id.isalpha():
         return False
-    
+
     return True

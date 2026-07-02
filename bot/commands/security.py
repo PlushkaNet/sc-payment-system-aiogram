@@ -1,12 +1,12 @@
-from aiogram import Router, F
+from aiogram import Router
 from aiogram.filters import StateFilter, Command
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
-from states import States
+from ..states import States
 
-import dbworks
+from .. import dbworks
+from .. import texts
 
-import texts
 import variables
 
 router = Router()
@@ -46,7 +46,7 @@ async def ProceedLoginning_NameStep(message:Message, state:FSMContext):
     if not await dbworks.check_if_username_exists(message.text, variables.DATABASE_NAME):
         await message.answer(texts.LOGIN_NAME_ERR)
         return
-        
+
     await state.update_data({"name":message.text})
     await state.set_state(States.loginning_password)
     await message.answer(texts.LOGIN2)
@@ -58,7 +58,7 @@ async def ProceedLoginning_PasswordStep(message:Message, state:FSMContext):
     if not await dbworks.check_if_valid_password(login_data["name"], message.text, variables.DATABASE_NAME):
         await message.answer(texts.LOGIN_PASSWORD_ERR)
         return
-    
+
     await state.update_data({"password":message.text})
     await state.set_state(States.logged_in)
     await message.answer(texts.LOGIN_SUCCESSFUL)

@@ -1,11 +1,11 @@
 from aiogram import Router, F
-from aiogram.filters import StateFilter, Command
+from aiogram.filters import Command
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from aiogram.fsm.context import FSMContext
-from states import States
 
-import dbworks
-import texts
+from .. import dbworks
+from .. import texts
+from ..states import States
 import variables
 
 router = Router()
@@ -63,13 +63,13 @@ async def EnterValueToProceed(message:Message, state:FSMContext):
     except:
         await message.answer(texts.TRANSFER_INVALID_VALUE_ERROR)
         return
-    
+
     if value <= 0:
         await message.answer(texts.TRANSFER_VALUE_BELOW_ERROR)
         return
-    
+
     account_info = await state.get_data()
-    
+
     if await dbworks.check_balance(account_info["name"], account_info["password"], variables.DATABASE_NAME) >= value:
         await state.update_data({"transfering_value":value})
 

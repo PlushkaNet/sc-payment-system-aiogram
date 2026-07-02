@@ -1,14 +1,14 @@
 from aiogram import Router, F
-from aiogram.filters import StateFilter, Command
+from aiogram.filters import Command
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from aiogram.fsm.context import FSMContext
-from states import States
+from ..states import States
 
-import dbworks
-import texts
+from .. import dbworks
+from .. import texts
+from .. import utils as specutils
+
 import variables
-
-import specutils
 
 router = Router()
 

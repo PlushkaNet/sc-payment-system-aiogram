@@ -125,7 +125,7 @@ def buy_tradepack(name:str, password:str, value:float, db_name:str):
         cursor.close()
         db.close()
         return False
-    
+
     peoplist = how_much_people_using_trade_system(db_name)
     len_peoplist = len(peoplist)-1
     if len_peoplist:
@@ -144,7 +144,7 @@ def buy_tradepack(name:str, password:str, value:float, db_name:str):
             if isok:
                 return True
             return False
-   
+
     if transfer_to_all(name, password, value, db_name):
         cursor.execute("UPDATE SUBSCRIPTIONS SET TRADEPACK=1 WHERE NAME=?", (name,))
         isok = cursor.rowcount
