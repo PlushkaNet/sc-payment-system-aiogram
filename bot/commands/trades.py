@@ -7,8 +7,7 @@ from ..states import States
 from .. import dbworks
 from .. import texts
 from .. import utils as specutils
-
-import variables
+from .. import variables
 
 router = Router()
 

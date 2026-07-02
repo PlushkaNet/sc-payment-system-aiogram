@@ -6,7 +6,7 @@ from aiogram.fsm.context import FSMContext
 from .. import dbworks
 from .. import texts
 from ..states import States
-import variables
+from .. import variables
 
 router = Router()
 

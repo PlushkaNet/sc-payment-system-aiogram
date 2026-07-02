@@ -13,5 +13,5 @@ async def main():
     dp.include_routers(nonlogin.router, security.router, general.router, trades.router)
     await dp.start_polling(bot)
 
-if __name__ == "__main__":
+def start():
     asyncio.run(main())
