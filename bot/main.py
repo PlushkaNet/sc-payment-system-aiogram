@@ -1,10 +1,13 @@
-from aiogram import Bot, Dispatcher
+import os
 import asyncio
 
-from commands import nonlogin, security, general, trades
+from aiogram import Bot, Dispatcher
+import dotenv
+from .commands import nonlogin, security, general, trades
 
 async def main():
-    bot = Bot("BOT_TOKEN_HERE")
+    dotenv.load_dotenv()
+    bot = Bot(os.environ["TOKEN"])
     dp = Dispatcher()
 
     dp.include_routers(nonlogin.router, security.router, general.router, trades.router)
